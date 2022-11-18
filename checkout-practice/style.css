@@ -1,0 +1,186 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}  
+
+.brand {
+
+    text-align: center;
+    background-color: #0a0a0a;
+    color: #cbff8c;
+    padding: 18px;
+  
+}
+
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+}
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    color: #cbff8c;
+}
+
+.page-container {
+    width: 100%;
+    display: grid;
+    column-gap: 30px;
+    padding: 30px;
+    margin: 0 auto;
+    grid-template-areas: 
+        "items payment"
+        "total total";
+    grid-template-columns: 1fr 1fr;
+    
+}
+
+.container {
+    color: #fff;
+    padding: 15px;
+    background-color: #0a0a0a;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 5px rgba(28, 28, 28, 0.5);
+    background-image: linear-gradient(to right, #0a0a0a, rgba(29, 28, 28, 0.865));
+   
+}
+
+.item {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr; 
+    grid-template-areas:
+    "qty item price"
+    "qty extras price";
+    padding: 10px 0;
+    row-gap: 10px;
+    border-bottom: 1px solid white;
+    
+}
+
+.orders {
+    grid-area: items;
+}
+
+.details {
+    grid-area: payment;
+}
+
+.total {
+    grid-area: total;
+    
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.qty {
+    grid-area: qty;
+    font-size: 18px;
+ 
+}
+
+.item-name {
+    grid-area: item;
+    font-size: 18px;
+
+}
+
+.price {
+    grid-area: price;
+    font-size: 18px;
+  
+}
+
+.extras {
+    grid-area: extras;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}
+
+
+
+.input {
+    border: 2px #fff solid;
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff;
+    padding: 8px;
+    border-radius: 100px;
+    width: 100%;
+    text-align: 18px;
+}
+
+.ccv-input {
+    max-width: 200px;
+}
+
+.name-payment-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.label-group {
+    background-color: #0a0a0a;
+    font-size: 11px;
+    position: absolute;
+    left: 25px;
+    top: -6px;
+    padding: 0 7px;
+    border-radius: 20px;
+}
+
+.total {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-total {
+    padding-top: 20px;
+    margin-bottom: 50px;
+    font-size: 20px;
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+}
+
+.table-total td:last-child {
+    text-align: right;
+}
+
+td {
+    padding: 10px;
+}
+
+.place-order {
+    background-color: #0a0a0a;
+    color: #cbff8c;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 100px;
+    padding: 10px;
+    border: none;
+    width: 100%;
+}
+
+footer {
+    text-align: center;
+    font-size: 8px;
+}
+
+.coffee {
+    max-width: 100%;
+    height: 100%;
+    width: 8px;
+    height: 8px;
+}
