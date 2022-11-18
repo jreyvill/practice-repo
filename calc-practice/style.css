@@ -32,6 +32,10 @@ button {
     cursor: pointer;
 }
 
+button:hover {
+    background-color: rgba(28, 28, 26, 0.837);
+}
+
 .calc-container {
     background-color: #fff;
     width: 350px;
