@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Roboto';
+}
+
+body {
+    background-color: #0a0a0a;
+}
+
+.output {
+    font-size: 46px;
+    text-align: right;
+    background-color: #0a0a0a;
+    color: #fff;
+    border: 2px solid #666;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 14px 5px;
+    box-shadow: rgba(122, 118, 118, 0.16) 0px 1px 4px, rgb(238, 233, 233) 0px 0px 0px 3px;
+    font-weight: 700;
+}
+
+button {
+    font-size: 42px;
+    background-color: #0a0a0a;
+    color: #cbff8c;
+    box-shadow: rgba(122, 118, 118, 0.16) 0px 1px 4px, rgb(238, 233, 233) 0px 0px 0px 3px;
+    border-style: none;
+    padding: 5px;
+    height: 75px;
+    cursor: pointer;
+}
+
+.calc-container {
+    background-color: #fff;
+    width: 350px;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 10px;
+    border-radius: 10px;
+    box-shadow: rgba(10, 209, 153, 0.15) 0px 15px 25px, rgba(9, 228, 89, 0.251) 0px 5px 10px;
+}
+.row1 {
+    
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+}
+
+.row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.row3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.row4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.row5 {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
