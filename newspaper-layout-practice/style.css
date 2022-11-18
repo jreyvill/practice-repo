@@ -1,0 +1,103 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:700);
+@import url(https://fonts.googleapis.com/css?family=Orbitron:700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500);
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+body {
+    padding: 30px;
+}
+
+.brand {
+    text-align: center;
+    padding: 30px;
+    font-size: 50px;
+}
+
+.brand-header{
+    grid-area: header;
+}
+
+.nav-links {
+    grid-area: nav;
+}
+
+.story-1 {
+    grid-area: story-1;
+}
+.story-2 {
+    grid-area: story-2;
+}
+.story-3 {
+    grid-area: story-3;
+}
+.story-4 {
+    grid-area: story-4;
+}
+.story-5 {
+    grid-area: story-5;
+}
+
+.article-img {
+    display: block;
+    margin: auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.article-img-two {
+    display: block;
+    margin: auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+.page {
+    display: grid;
+    grid-template-areas: 
+    "header     header      header"
+    "nav        nav         nav"
+    "story-1    story-2     story-3"
+    "story-4    story-5     story-5";
+    margin: 50px 100px;
+    font-family: 'Roboto';
+    
+}
+.article-title {
+    padding: 30px 30px;
+    text-align: center;
+    font-size: 30px;
+    
+}
+.article-text {
+    padding: 10px 10px;
+}
+
+.story{
+    border-left: 3px solid;
+    border-bottom: 3px solid;
+    padding: 15px;
+}
+.story-3, .story-5 {
+    border-right: 3px solid;
+   
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 30px;
+    border: 3px solid;
+    font-family: 'Montserrat';
+    font-weight: bolder;
+    font-size: 40px;
+}
+.section-link {
+    text-decoration: none;
+    color: black;
+}
+.section-link:hover {
+    text-decoration: underline;
+}
