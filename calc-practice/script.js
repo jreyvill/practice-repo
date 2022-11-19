@@ -9,6 +9,7 @@ const userPress = document.querySelector('.buttons-container')
     buttonClicked(ev.target.innerText);
 });
 
+
 function buttonClicked(value) {
     if(isNaN(parseInt(value))) {
         symbolHandler(value);
@@ -28,6 +29,7 @@ function symbolHandler(symbolValue) {
             mathSymbolHandler(symbolValue);
             break;
         case '=':
+            equalSymbol();
             break;
         case '←':
             removeLastChar();
@@ -40,21 +42,47 @@ function symbolHandler(symbolValue) {
     }
 }
 
-function mathSymbolHandler(mathSymbol) {
-    if(outputBuffer === '0'){
+function equalSymbol() {
+    //check if there's no previous operator clicked
+    if(prevSymbol === null) {
+        //do nothing and return right away
         return;
     }
+    computation(parseInt(outputBuffer));
+    
+    //reset previous symbol pressed
+    prevSymbol = null;
+    
+    outputBuffer = total.toString();
+    total = 0;
+}
+
+function mathSymbolHandler(mathSymbol) {
+    
+    if(outputBuffer === '0'){
+        //if value is 0, exit function and do nothing
+        return;
+    }
+
     const intBuffer = parseInt(outputBuffer)
     if (total === 0) {
+        
+        //holds previous value
         total = intBuffer;
     }
     else {
+
+        //do computation when there's a previous value
         computation(intBuffer);
     }
-
-    prevSymbol = mathSymbol;      
+    
+    //holds previous symbol clicked
+    prevSymbol = mathSymbol; 
+    
+    //set display to '0'     
     clearBuffer();
 }
+
 
 function computation(prevBuffer) {
     switch (prevSymbol) {
@@ -75,6 +103,7 @@ function computation(prevBuffer) {
     }
 }
 
+//refresh display with concated pressed numeric value
 function rerenderDisplay() {
     outputDisplay.innerText = outputBuffer;
 }
@@ -84,17 +113,22 @@ function clearBuffer() {
 }
 
 function removeLastChar() {
+    //check if the output length is 1
     if(outputBuffer.length === 1) {
+        //if 1, set buffer to '0'
         clearBuffer();
     } else {
+        //remove last char from display/output
        outputBuffer =  outputBuffer.substring(0, outputBuffer.length - 1);
     }
 }
 
 function numberHandler(numericValue) {
     if(outputBuffer === '0') {
+        //update output buffer with numeric value being pressed
         outputBuffer = numericValue;
     } else {
+        //keep adding char to the output buffer every num button clicked
         outputBuffer += numericValue;
     }
 }
