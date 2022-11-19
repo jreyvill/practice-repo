@@ -11,4 +11,6 @@
 - add update ordered items (reduce or add quantity)
 ### Mini Calculator Project
 #### To do:
-- working calculator
+- ~~working calculator~~ ☑
+- limit output
+
