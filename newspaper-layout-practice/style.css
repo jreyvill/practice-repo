@@ -70,8 +70,10 @@ body {
     font-size: 30px;
     
 }
+
 .article-text {
     padding: 10px 10px;
+    font-family: 'Noticia Text', serif;
 }
 
 .story{
