@@ -83,7 +83,7 @@ function mathSymbolHandler(mathSymbol) {
     clearBuffer();
 }
 
-
+//a function that handles all the computation for the output
 function computation(prevBuffer) {
     switch (prevSymbol) {
         case '÷':
