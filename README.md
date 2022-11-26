@@ -15,5 +15,5 @@
 <br><img src="https://user-images.githubusercontent.com/115680527/202833467-ed739c7a-b2b2-4022-89d4-0217694577f2.gif" width="245" height="300"/>
 - limit output
 
-
+### Simple AJAX City/State search
 
