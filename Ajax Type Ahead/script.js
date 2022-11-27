@@ -4,10 +4,15 @@ const SRC_LINK = 'https://raw.githubusercontent.com/Elkfox/Australian-Postcode-D
 
 const cities = [];
 
+init();
 
-fetch(SRC_LINK)
-.then(blob => blob.json())
-.then(data => cities.push(...data))
+function init() {
+
+    fetch(SRC_LINK)
+    .then(blob => blob.json())
+    .then(data => cities.push(...data))
+}
+
 
 function findMatches(wordToMatch, cities) {
     return cities.filter(place => {
@@ -16,6 +21,7 @@ function findMatches(wordToMatch, cities) {
         return place.place_name.match(regex);
     });
 }
+
 function displayMatches() {
     
     const matchArray = findMatches(this.value, cities);
@@ -29,6 +35,7 @@ function displayMatches() {
     suggestions.innerHTML = html;
     
 }
+
 const searchInput = document.querySelector('.search');
 const suggestions = document.querySelector('.suggestions');
 searchInput.addEventListener('change', displayMatches);
