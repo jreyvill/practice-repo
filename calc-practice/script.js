@@ -127,7 +127,9 @@ function numberHandler(numericValue) {
     if(outputBuffer === '0') {
         //update output buffer with numeric value being pressed
         outputBuffer = numericValue;
-    } else {
+    } else if (outputBuffer.length !== 12) {
+
+        
         //keep adding char to the output buffer every num button clicked
         outputBuffer += numericValue;
     }
