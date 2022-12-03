@@ -1,28 +1,38 @@
 "use strict"
-const MAX_ANSWER_LENGTH = 5;
+const MAX_ANSWER_LENGTH = 5; 
 const allLetters = document.querySelectorAll('.letter') // getting all the letters
-const loadingDiv = document.querySelector('info-bar') //loading indicator
+const loadingDiv = document.querySelector('.info-bar') //loading indicator
 
 
 async function init() {
-    
+
+    // api call to get the word
+    const response = await fetch("https://words.dev-apis.com/word-of-the-day");
+    // parsing if 200
+    const responseObj = await response.json();
+    // get the word then make it all capitalized
+    const word = responseObj.word.toUpperCase();
+    // hide loading icon if word exist
+    setLoading(false);
+
     //added function name for debugging purposes and tracking of error instead of anonymous function
     document.addEventListener('keydown', function handleKeyPress(event) {
        
         //records user keypress
         const userAction = event.key;
-        console.log(userAction)
         if (userAction === 'Enter') {
             commitGuess();
         } else if (userAction === 'Backspace') {
-            backspace();   
+            backspaceKey();   
         } else if (isLetter(userAction)) {
             addLetter(userAction.toUpperCase())
         } else {
             //ignore all except the above keypresses 
             //do nothing
         } 
+        
     });
+
 
     /***
      * Function responsible for placing letter in the square box
@@ -40,6 +50,12 @@ async function init() {
         
         // determine which row to place letter
         allLetters[MAX_ANSWER_LENGTH * currentRow + currentGuess.length - 1].innerText = letter;
+    }
+
+    function backspaceKey() {
+        
+        currentGuess = currentGuess.substring(0, currentGuess.length - 1); // get the last char 
+        allLetters[MAX_ANSWER_LENGTH * currentRow + currentGuess.length].innerText = ''; // replace the last char with empty string
     }
 
     /***
@@ -64,6 +80,14 @@ async function init() {
   
 }
 
+function setLoading(isLoading) {
+
+    loadingDiv.classList.toggle('hidden' , !isLoading);
+}
+
+/***
+ * Function responsible if user key press is an alphabet or not
+ */
 function isLetter(letter) {
     return /^[a-zA-Z]$/.test(letter);
 }
