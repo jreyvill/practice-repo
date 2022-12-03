@@ -2,6 +2,8 @@
 const MAX_ANSWER_LENGTH = 5; 
 const allLetters = document.querySelectorAll('.letter') // getting all the letters
 const loadingDiv = document.querySelector('.info-bar') //loading indicator
+let currentGuess = '';
+let currentRow = 0;
 
 
 async function init() {
@@ -10,8 +12,12 @@ async function init() {
     const response = await fetch("https://words.dev-apis.com/word-of-the-day");
     // parsing if 200
     const responseObj = await response.json();
-    // get the word then make it all capitalized
-    const word = responseObj.word.toUpperCase();
+ 
+    const wordOfTheDay = responseObj.word.toUpperCase();
+    
+    const wordOfTheDayParts = wordOfTheDay.split('');
+    
+
     // hide loading icon if word exist
     setLoading(false);
 
@@ -30,17 +36,17 @@ async function init() {
             //ignore all except the above keypresses 
             //do nothing
         } 
-        
+
     });
 
 
     /***
      * Function responsible for placing letter in the square box
      */
-    let currentGuess = '';
-    let currentRow = 0;
+
     function addLetter(letter) {
 
+        
         if (currentGuess.length < MAX_ANSWER_LENGTH) {
             
             currentGuess += letter;
@@ -71,6 +77,7 @@ async function init() {
         // TODO validate the word
 
         // TODO do all the marking as "correct" "close" or "wrong"
+        answerCheck(currentGuess, wordOfTheDayParts)
 
         // TODO did they win or lose?
         
@@ -80,8 +87,53 @@ async function init() {
   
 }
 
-function setLoading(isLoading) {
+function answerCheck(userAnswer, theAnswer) {
 
+    const userAnswerChars = userAnswer.split('');
+    const map = makeMap(theAnswer);
+
+    // iterate to check for every correct index of char
+    for (let i = 0; i < MAX_ANSWER_LENGTH; i++) {
+        // mark as correct if correct position
+        if (userAnswerChars[i] === theAnswer[i])  {
+            allLetters[currentRow * MAX_ANSWER_LENGTH + i].classList.add('correct');
+            map[userAnswerChars[i]]--;
+        }
+    }
+
+    for (let i = 0; i < MAX_ANSWER_LENGTH; i++) {
+
+        if (userAnswerChars[i] === theAnswer[i]) {
+            //do nothing, this handles from the first loop
+        } else if (theAnswer.includes(userAnswerChars[i]) && map[userAnswerChars[i]] > 0) { // mark 'close' if a char exist in the answer(word of the day)
+            allLetters[currentRow * MAX_ANSWER_LENGTH + i].classList.add('close');
+            map[userAnswerChars]--;
+
+        } else {
+            allLetters[currentRow * MAX_ANSWER_LENGTH + i].classList.add('wrong');
+        }
+        
+    }
+}
+
+/***
+ * function to keep track how many letters that are mark as 'close' or 'correct'
+ */
+function makeMap(array) {
+
+    const obj = {};
+    for (let i = 0; i < array.length; i++) {
+        const letter = array[i]
+        if (obj[letter]) {
+            obj[letter]++;
+        } else {
+            obj[letter] = 1;
+        }
+    }
+    return obj;
+}
+
+function setLoading(isLoading) {
     loadingDiv.classList.toggle('hidden' , !isLoading);
 }
 
@@ -91,5 +143,6 @@ function setLoading(isLoading) {
 function isLetter(letter) {
     return /^[a-zA-Z]$/.test(letter);
 }
+
 
 init();
